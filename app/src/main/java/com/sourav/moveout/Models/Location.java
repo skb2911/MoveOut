@@ -1,29 +1,29 @@
 package com.sourav.moveout.Models;
 
 public class Location {
-    String Latitude, Longitude;
+    String latitude, longitude;
 
     public Location(String latitude, String longitude) {
-        Latitude = latitude;
-        Longitude = longitude;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Location() {
     }
 
     public String getLatitude() {
-        return Latitude;
+        return latitude;
     }
 
     public void setLatitude(String latitude) {
-        Latitude = latitude;
+        latitude = latitude;
     }
 
     public String getLongitude() {
-        return Longitude;
+        return longitude;
     }
 
     public void setLongitude(String longitude) {
-        Longitude = longitude;
+        longitude = longitude;
     }
 }

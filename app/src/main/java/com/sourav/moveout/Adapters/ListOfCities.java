@@ -1,16 +1,19 @@
 package com.sourav.moveout.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.sourav.moveout.CityActivity;
 import com.sourav.moveout.R;
 
 import java.util.ArrayList;
@@ -43,7 +46,7 @@ public class ListOfCities extends RecyclerView.Adapter<ListOfCities.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
 
         viewHolder.cityName.setText(listOfCities.get(i));
 
@@ -73,6 +76,15 @@ public class ListOfCities extends RecyclerView.Adapter<ListOfCities.ViewHolder> 
         }else {
             Toast.makeText(context, "Error occurred", Toast.LENGTH_SHORT).show();
         }
+
+        viewHolder.cityImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CityActivity.class);
+                intent.putExtra("City Name", listOfCities.get(i));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

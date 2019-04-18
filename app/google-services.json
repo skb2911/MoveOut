@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "386551997305",
+    "firebase_url": "https://moveout-6c808.firebaseio.com",
+    "project_id": "moveout-6c808",
+    "storage_bucket": "moveout-6c808.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:386551997305:android:f1a2ae671a22ae1d",
+        "android_client_info": {
+          "package_name": "com.sourav.moveout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "386551997305-dsbqm84ns2mr5khnv8mlfqppd2d60ufb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sourav.moveout",
+            "certificate_hash": "3c1fb2ff40c23e15b32a25e60b289262cf1d88ff"
+          }
+        },
+        {
+          "client_id": "386551997305-uvhk4l1u26rlph20jspaij66dedv7958.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq0OvHz0xjSMpZ7pNlqnI3iHVxCBfhTSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "386551997305-uvhk4l1u26rlph20jspaij66dedv7958.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

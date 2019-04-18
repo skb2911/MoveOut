@@ -10,6 +10,9 @@ public class Currency {
         this.currencyConversion = currencyConversion;
     }
 
+    public Currency() {
+    }
+
     public String getCurrencyName() {
         return currencyName;
     }
