@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +31,7 @@ public class AboutCityActivity extends AppCompatActivity {
     TextView cityNameTextView, dontMissTextView, aboutCityTextView, timeZoneTextView, maxDF, minDF, maxMM, minMM, maxJA, minJA, maxSN, minSN;
     RecyclerView currenciesRecyclerView;
     Button celsius, fahrenheit;
+    int tempType =2;
 
 
     @Override
@@ -39,6 +42,9 @@ public class AboutCityActivity extends AppCompatActivity {
         initials();
 
         final String cityName = getIntent().getStringExtra("City Name");
+
+
+
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -65,23 +71,102 @@ public class AboutCityActivity extends AppCompatActivity {
 
                 ArrayList<String> dontMiss = dataSnapshot.child("dontMiss").getValue(t);
 
-
                 City city = dataSnapshot.getValue(City.class);
-
-//                ArrayList things = dataSnapshot.child("thingsToDo").getValue(ArrayList.class);
-                Log.d("ths",city.toString());
 
                 for(int i=0; i<listOfCurrencies.size();i++){
                     ((ListOfCurrencies)currenciesRecyclerView.getAdapter()).update(listOfCurrencies.get(i).getCurrencyName(), listOfCurrencies.get(i).getCurrencyConversion());
-
                 }
 
-                String dontMissList="Don't Miss: "+ dontMiss.get(0);
+                String dontMissList = "Don't Miss: "+ dontMiss.get(0);
                 for(int i=1; i<dontMiss.size();i++){
                     dontMissList = dontMissList.concat(" - ").concat(dontMiss.get(i));
                 }
-                //Toast.makeText(CityActivity.this, dontMissList, Toast.LENGTH_SHORT).show();
                 dontMissTextView.setText(dontMissList);
+
+                final String maxCDF = dataSnapshot.child("localWeather").child("dfTemperature").child("temperatureC").child("max").getValue(String.class) + "C";
+                final String minCDF = dataSnapshot.child("localWeather").child("dfTemperature").child("temperatureC").child("min").getValue(String.class) + "C";
+                final String maxCMM = dataSnapshot.child("localWeather").child("mmTemperature").child("temperatureC").child("max").getValue(String.class) + "C";
+                final String minCMM = dataSnapshot.child("localWeather").child("mmTemperature").child("temperatureC").child("min").getValue(String.class) + "C";
+                final String maxCJA = dataSnapshot.child("localWeather").child("jaTemperature").child("temperatureC").child("max").getValue(String.class) + "C";
+                final String minCJA = dataSnapshot.child("localWeather").child("jaTemperature").child("temperatureC").child("min").getValue(String.class) + "C";
+                final String maxCSN = dataSnapshot.child("localWeather").child("snTemperature").child("temperatureC").child("max").getValue(String.class) + "C";
+                final String minCSN = dataSnapshot.child("localWeather").child("snTemperature").child("temperatureC").child("min").getValue(String.class) + "C";
+
+                final String maxFDF = dataSnapshot.child("localWeather").child("dfTemperature").child("temperatureF").child("max").getValue(String.class) + "F";
+                final String minFDF = dataSnapshot.child("localWeather").child("dfTemperature").child("temperatureF").child("min").getValue(String.class) + "F";
+                final String maxFMM = dataSnapshot.child("localWeather").child("mmTemperature").child("temperatureF").child("max").getValue(String.class) + "F";
+                final String minFMM = dataSnapshot.child("localWeather").child("mmTemperature").child("temperatureF").child("min").getValue(String.class) + "F";
+                final String maxFJA = dataSnapshot.child("localWeather").child("jaTemperature").child("temperatureF").child("max").getValue(String.class) + "F";
+                final String minFJA = dataSnapshot.child("localWeather").child("jaTemperature").child("temperatureF").child("min").getValue(String.class) + "F";
+                final String maxFSN = dataSnapshot.child("localWeather").child("snTemperature").child("temperatureF").child("max").getValue(String.class) + "F";
+                final String minFSN = dataSnapshot.child("localWeather").child("snTemperature").child("temperatureF").child("min").getValue(String.class) + "F";
+
+
+                maxDF.setText(maxFDF);
+                minDF.setText(minFDF);
+                maxMM.setText(maxFMM);
+                minMM.setText(minFMM);
+                maxJA.setText(maxFJA);
+                minJA.setText(minFJA);
+                maxSN.setText(maxFSN);
+                minSN.setText(minFSN);
+
+                celsius.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        fahrenheit.setVisibility(View.VISIBLE);
+                        celsius.setVisibility(View.INVISIBLE);
+                        tempType = 1;
+                        maxDF.setText(maxCDF);
+                        minDF.setText(minCDF);
+                        maxMM.setText(maxCMM);
+                        minMM.setText(minCMM);
+                        maxJA.setText(maxCJA);
+                        minJA.setText(minCJA);
+                        maxSN.setText(maxCSN);
+                        minSN.setText(minCSN);
+                    }
+                });
+
+                fahrenheit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        celsius.setVisibility(View.VISIBLE);
+                        fahrenheit.setVisibility(View.INVISIBLE);
+                        tempType = 2;
+                        maxDF.setText(maxFDF);
+                        minDF.setText(minFDF);
+                        maxMM.setText(maxFMM);
+                        minMM.setText(minFMM);
+                        maxJA.setText(maxFJA);
+                        minJA.setText(minFJA);
+                        maxSN.setText(maxFSN);
+                        minSN.setText(minFSN);
+                    }
+                });
+//                if(tempType == 1){
+//                    maxDF.setText(maxCDF);
+//                    minDF.setText(minCDF);
+//                    maxMM.setText(maxCMM);
+//                    minMM.setText(minCMM);
+//                    maxJA.setText(maxCJA);
+//                    minJA.setText(minCJA);
+//                    maxSN.setText(maxCSN);
+//                    minSN.setText(minCSN);
+//                }
+//                else if(tempType == 2){
+//                    maxDF.setText(maxFDF);
+//                    minDF.setText(minFDF);
+//                    maxMM.setText(maxFMM);
+//                    minMM.setText(minFMM);
+//                    maxJA.setText(maxFJA);
+//                    minJA.setText(minFJA);
+//                    maxSN.setText(maxFSN);
+//                    minSN.setText(minFSN);
+//                }
+//                else {
+//                    Toast.makeText(AboutCityActivity.this, "Error in temperature", Toast.LENGTH_SHORT).show();
+//                }
 
 //                for (DataSnapshot postSnapshot : dataSnapshot.child("thingsToDo").getChildren()) {
 //                    //Getting the data from snapshot
