@@ -1,15 +1,26 @@
 package com.sourav.moveout.Models;
 
-public class MMTemperature {
+public class Temperature {
+
+    String duration;
     TemperatureC temperatureC;
     TemperatureF temperatureF;
 
-    public MMTemperature(TemperatureC temperatureC, TemperatureF temperatureF) {
+    public Temperature(String duration, TemperatureC temperatureC, TemperatureF temperatureF) {
+        this.duration = duration;
         this.temperatureC = temperatureC;
         this.temperatureF = temperatureF;
     }
 
-    public MMTemperature() {
+    public Temperature() {
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     public TemperatureC getTemperatureC() {

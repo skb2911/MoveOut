@@ -9,17 +9,17 @@ public class City {
     Location location;
     String timeZone;
     ArrayList<Currency> listOfCurrencies;
-    LocalWeather localWeather;
+    ArrayList<Temperature> listOfTemperature;
     ArrayList<String> thingsToDo;
 
-    public City(String name, ArrayList<String> dontMiss, String about, Location location, String timeZone, ArrayList<Currency> listOfCurrencies, LocalWeather localWeather, ArrayList<String> thingsToDo) {
+    public City(String name, ArrayList<String> dontMiss, String about, Location location, String timeZone, ArrayList<Currency> listOfCurrencies, ArrayList<Temperature> listOfTemperature, ArrayList<String> thingsToDo) {
         this.name = name;
         this.dontMiss = dontMiss;
         this.about = about;
         this.location = location;
         this.timeZone = timeZone;
         this.listOfCurrencies = listOfCurrencies;
-        this.localWeather = localWeather;
+        this.listOfTemperature = listOfTemperature;
         this.thingsToDo = thingsToDo;
     }
 
@@ -74,12 +74,12 @@ public class City {
         this.listOfCurrencies = listOfCurrencies;
     }
 
-    public LocalWeather getLocalWeather() {
-        return localWeather;
+    public ArrayList<Temperature> getListOfTemperature() {
+        return listOfTemperature;
     }
 
-    public void setLocalWeather(LocalWeather localWeather) {
-        this.localWeather = localWeather;
+    public void setListOfTemperature(ArrayList<Temperature> listOfTemperature) {
+        this.listOfTemperature = listOfTemperature;
     }
 
     public ArrayList<String> getThingsToDo() {

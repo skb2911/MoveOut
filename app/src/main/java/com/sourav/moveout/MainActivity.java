@@ -18,12 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.sourav.moveout.Adapters.ListOfCities;
 import com.sourav.moveout.Models.City;
 import com.sourav.moveout.Models.Currency;
-import com.sourav.moveout.Models.DFTemperature;
-import com.sourav.moveout.Models.JATemperature;
-import com.sourav.moveout.Models.LocalWeather;
 import com.sourav.moveout.Models.Location;
-import com.sourav.moveout.Models.MMTemperature;
-import com.sourav.moveout.Models.SNTemperature;
+import com.sourav.moveout.Models.Temperature;
 import com.sourav.moveout.Models.TemperatureC;
 import com.sourav.moveout.Models.TemperatureF;
 
@@ -43,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     Location location;
     String timeZone;
     ArrayList<Currency> listOfCurrencies;
-    LocalWeather localWeather;
+    ArrayList<Temperature> listOfTemperatures;
     ArrayList<String> thingsToDo;
 
     FirebaseDatabase firebaseDatabase;
@@ -59,44 +55,60 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        /*
 
-        name = "Macau";
+
+        name = "Seoul";
         dontMiss = new ArrayList<String>();
-        dontMiss.add("Arts and Recreation");
-        dontMiss.add("Urban Adventure");
+        dontMiss.add("Urban Adventures");
         dontMiss.add("Theme Park Fun");
-        dontMiss.add("Culinary Hotspot");
+        dontMiss.add("Romantic Moments");
+        dontMiss.add("History and Culture");
+//        dontMiss.add("Culinary Hotspot");
+//
+//
+//        dontMiss.add("Shopping Paradise");
+//        dontMiss.add("World Heritage Site");
+//        dontMiss.add("Bucket List Destination");
+//        dontMiss.add("Theme Park Fun");
 
-        about = "Despite being a tiny island and a former fish village, the modern city of Singapore is filled with so much to explore!";
+        about = "Travel o the home of K-pop culture and visit the dynamic city of Seoul!";
 
-        location = new Location("1.3521° N","103.8198° E");
+        location = new Location("37.5665° N","126.9780° E");
 
-        timeZone = "GMT +08:00";
+        timeZone = "GMT +09:00";
 
-        Currency currency1 = new Currency("Singapore Dollar", "1 INR = 0.02SGD");
+        Currency currency1 = new Currency("Korean Won", "1 INR = 16.39 KRW");
         //Currency currency2 = new Currency("Macau Pataca", "1 INR = 0.12 MOP");
         listOfCurrencies = new ArrayList<Currency>();
         listOfCurrencies.add(currency1);
         //listOfCurrencies.add(currency2);
 
-        TemperatureC dfTempC = new TemperatureC("20°","13°");
-        TemperatureF dfTempF = new TemperatureF("68°","55°");
-        DFTemperature dfTemperature = new DFTemperature(dfTempC, dfTempF);
 
-        TemperatureC mmTempC = new TemperatureC("28°","16°");
-        TemperatureF mmTempF = new TemperatureF("82°","61°");
-        MMTemperature mmTemperature = new MMTemperature(mmTempC, mmTempF);
 
-        TemperatureC jaTempC = new TemperatureC("32°","26°");
-        TemperatureF jaTempF = new TemperatureF("90°","79°");
-        JATemperature jaTemperature = new JATemperature(jaTempC, jaTempF);
+        TemperatureC dfTempC = new TemperatureC("4°","-9°");
+        TemperatureF dfTempF = new TemperatureF("39°","16°");
+        Temperature dfTemperature = new Temperature("DEC - FEB", dfTempC, dfTempF);
 
-        TemperatureC snTempC = new TemperatureC("30°","18°");
-        TemperatureF snTempF = new TemperatureF("86°","64°");
-        SNTemperature snTemperature = new SNTemperature(snTempC, snTempF);
+        TemperatureC mmTempC = new TemperatureC("22°","-2°");
+        TemperatureF mmTempF = new TemperatureF("72°","28°");
+        Temperature mmTemperature = new Temperature("MAR - MAY",mmTempC, mmTempF);
 
-        localWeather = new LocalWeather(dfTemperature, mmTemperature, jaTemperature, snTemperature);
+        TemperatureC jaTempC = new TemperatureC("28°","16°");
+        TemperatureF jaTempF = new TemperatureF("82°","61°");
+        Temperature jaTemperature = new Temperature("JUN - AUG",jaTempC, jaTempF);
+
+        TemperatureC snTempC = new TemperatureC("24°","-1°");
+        TemperatureF snTempF = new TemperatureF("75°","30°");
+        Temperature snTemperature = new Temperature("SEP - NOV",snTempC, snTempF);
+
+        listOfTemperatures = new ArrayList<>();
+        listOfTemperatures.add(dfTemperature);
+        listOfTemperatures.add(mmTemperature);
+        listOfTemperatures.add(jaTemperature);
+        listOfTemperatures.add(snTemperature);
+
+
+
 
         thingsToDo = new ArrayList<>();
         thingsToDo.add("Attraction & Shows");
@@ -105,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         thingsToDo.add("Best Food & Must Eats");
         thingsToDo.add("Transport & WiFi");
 
-        City city = new City(name, dontMiss, about, location, timeZone, listOfCurrencies, localWeather, thingsToDo);
+        City city = new City(name, dontMiss, about, location, timeZone, listOfCurrencies, listOfTemperatures, thingsToDo);
 
 
 
@@ -122,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        */
+
 
 
 
