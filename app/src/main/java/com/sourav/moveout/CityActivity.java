@@ -1,11 +1,14 @@
 package com.sourav.moveout;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,8 +32,10 @@ public class CityActivity extends AppCompatActivity {
 
     RecyclerView recyclerViewListOfThings;
 
-    TextView dontMissTextView, cityNameTextView;
+    TextView dontMissTextView, cityNameTextView, aboutCity;
     RelativeLayout layout;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +49,9 @@ public class CityActivity extends AppCompatActivity {
         dontMissTextView = findViewById(R.id.dontMiss);
         cityNameTextView = findViewById(R.id.cityName);
         layout = findViewById(R.id.layout);
+        aboutCity = findViewById(R.id.aboutCity);
 
-        String cityName = getIntent().getStringExtra("City Name");
+        final String cityName = getIntent().getStringExtra("City Name");
         if(cityName.toLowerCase().equals("hong kong")){
             layout.setBackgroundResource(R.drawable.hongkong);
         }
@@ -125,5 +131,14 @@ public class CityActivity extends AppCompatActivity {
         ListOfThings listOfThings = new ListOfThings(recyclerViewListOfThings, CityActivity.this, new ArrayList<String>() );
         //adapterForRecordsList.notifyDataSetChanged();
         recyclerViewListOfThings.setAdapter(listOfThings);
+
+        aboutCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent aboutCItyIntent = new Intent(CityActivity.this, AboutCityActivity.class);
+                aboutCItyIntent.putExtra("City Name", cityName);
+                startActivity(aboutCItyIntent);
+            }
+        });
     }
 }
